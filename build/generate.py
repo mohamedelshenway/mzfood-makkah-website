@@ -19,7 +19,7 @@ from data import (  # noqa: E402
     MENU_CATEGORIES, KUNAFA, POPULAR_DISH_KEYS, HERO, WHY_MZFOOD, BRAND_STORY,
     HOW_TO_ORDER, LOW_CALORIES, REVIEWS_EMPTY, FINAL_CTA, ABOUT_PRINCIPLES,
     DELIVERY_AREAS, DELIVERY_STEPS, HOTELS_TEASER, META,
-    UZBEK_CUISINE_PAGE, PLOV_PAGE,
+    UZBEK_CUISINE_PAGE, PLOV_PAGE, RUSSIAN_CUISINE_PAGE, CHECHEN_CUISINE_PAGE,
 )
 from icons import icon  # noqa: E402
 
@@ -509,6 +509,11 @@ def menu_body(lang):
         "en": "You might also like",
         "ar": "اقرأ أيضًا",
     }[lang]
+    cuisine_landing_keys = ["russian_cuisine", "chechen_cuisine", "uzbek_cuisine", "plov"]
+    cuisine_links = " · ".join(
+        f'<a href="{page_path(k, lang)}" style="font-weight:700;text-decoration:underline;">{NAV[k][lang]}</a>'
+        for k in cuisine_landing_keys
+    )
     return f"""
 {page_header_html(lang, 'menu', {"ru":"Меню MZ FOOD","en":"MZ FOOD Menu","ar":"منيو MZ FOOD"}[lang], {"ru":"Домашние блюда, знакомые вам с детства","en":"Home-style dishes you've known since childhood","ar":"أطباق بيتية تعرفها من زمان"}[lang])}
 <section class="section--tight">
@@ -522,8 +527,7 @@ def menu_body(lang):
     </div>
     <div class="menu-note" style="margin-top:24px;text-align:center;">
       {read_also}:
-      <a href="{page_path('uzbek_cuisine', lang)}" style="font-weight:700;text-decoration:underline;">{NAV['uzbek_cuisine'][lang]}</a> ·
-      <a href="{page_path('plov', lang)}" style="font-weight:700;text-decoration:underline;">{NAV['plov'][lang]}</a>
+      {cuisine_links}
     </div>
   </div>
 </section>
@@ -676,18 +680,25 @@ def lowcalories_body(lang):
 
 
 def cuisine_landing_body(lang, page_key, data):
-    """Shared renderer for non-branded SEO landing pages (Uzbek cuisine, Plov) —
-    same visual language as the rest of the site (page-header, dish-grid, final-cta),
-    just a different, genuinely unique block of copy and a curated subset of real dishes."""
+    """Shared renderer for non-branded SEO landing pages (Uzbek cuisine, Plov,
+    Russian cuisine, Chechen & Caucasian cuisine) — same visual language as the
+    rest of the site (page-header, dish-grid, final-cta), just a different,
+    genuinely unique block of copy and a curated subset of real dishes.
+    Cross-links to sibling cuisine pages come from data['related'] (a list of
+    page_keys), so this scales to any number of landing pages, not just a pair."""
     items = all_items_by_key()
     dish_cards = "".join(dish_card_html(lang, items[k]) for k in data["dish_keys"])
     note_html = f'<p class="menu-note">{data["note"][lang]}</p>' if data.get("note") else ""
-    other_key = "plov" if page_key == "uzbek_cuisine" else "uzbek_cuisine"
-    cross_link_text = {
-        "ru": "Ещё узбекская и среднеазиатская кухня" if page_key == "plov" else "Отдельная страница про плов",
-        "en": "More Uzbek & Central Asian dishes" if page_key == "plov" else "See our dedicated plov page",
-        "ar": "المزيد عن المطبخ الأوزبكي وآسيا الوسطى" if page_key == "plov" else "صفحة خاصة عن البلوف",
-    }[lang]
+    related_keys = data.get("related", [])
+    read_also_label = {"ru": "Читайте также", "en": "You might also like", "ar": "اقرأ أيضًا"}[lang]
+    related_links = " · ".join(
+        f'<a href="{page_path(k, lang)}" style="font-weight:700;text-decoration:underline;">{NAV[k][lang]}</a>'
+        for k in related_keys
+    )
+    related_html = (
+        f'<div class="menu-note" style="margin-top:16px;text-align:center;">{read_also_label}: {related_links}</div>'
+        if related_links else ""
+    )
     return f"""
 {page_header_html(lang, page_key, data['h1'][lang], data['kicker'][lang])}
 <section class="section--tight">
@@ -701,8 +712,8 @@ def cuisine_landing_body(lang, page_key, data):
     {note_html}
     <div class="section-cta-row" style="flex-direction:column;gap:16px;align-items:center;">
       <a class="btn btn-outline" href="{page_path('menu', lang)}">{CTA['view_full_menu'][lang]}</a>
-      <a href="{page_path(other_key, lang)}" style="font-weight:700;text-decoration:underline;">{cross_link_text} →</a>
     </div>
+    {related_html}
   </div>
 </section>
 <section class="section-deep final-cta">
@@ -721,6 +732,14 @@ def uzbek_cuisine_body(lang):
 
 def plov_body(lang):
     return cuisine_landing_body(lang, "plov", PLOV_PAGE)
+
+
+def russian_cuisine_body(lang):
+    return cuisine_landing_body(lang, "russian_cuisine", RUSSIAN_CUISINE_PAGE)
+
+
+def chechen_cuisine_body(lang):
+    return cuisine_landing_body(lang, "chechen_cuisine", CHECHEN_CUISINE_PAGE)
 
 
 def error_404_body(lang):
@@ -752,6 +771,8 @@ PAGE_BUILDERS = {
     "lowcalories": lowcalories_body,
     "uzbek_cuisine": uzbek_cuisine_body,
     "plov": plov_body,
+    "russian_cuisine": russian_cuisine_body,
+    "chechen_cuisine": chechen_cuisine_body,
 }
 
 

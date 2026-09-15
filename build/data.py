@@ -31,6 +31,8 @@ SLUGS = {
     # but included in sitemap/hreflang and cross-linked from Menu.
     "uzbek_cuisine": {"ru": "uzbekskaya-kuhnya-v-mekke", "en": "uzbek-food-makkah", "ar": "uzbek-food-makkah"},
     "plov":          {"ru": "plov-v-mekke",              "en": "plov-in-makkah",   "ar": "plov-in-makkah"},
+    "russian_cuisine": {"ru": "russkaya-kuhnya-v-mekke",     "en": "russian-food-makkah", "ar": "russian-food-makkah"},
+    "chechen_cuisine": {"ru": "chechenskaya-kuhnya-v-mekke", "en": "chechen-food-makkah", "ar": "chechen-food-makkah"},
 }
 
 PAGE_ORDER = ["home", "menu", "about", "delivery", "reviews", "contacts"]
@@ -60,6 +62,8 @@ NAV = {
     # Breadcrumb labels only — these two are not in PAGE_ORDER, so they don't appear in the main nav.
     "uzbek_cuisine": {"ru": "Узбекская кухня", "en": "Uzbek Cuisine", "ar": "المطبخ الأوزبكي"},
     "plov": {"ru": "Плов", "en": "Plov", "ar": "البلوف"},
+    "russian_cuisine": {"ru": "Русская кухня", "en": "Russian Cuisine", "ar": "المطبخ الروسي"},
+    "chechen_cuisine": {"ru": "Чеченская и кавказская кухня", "en": "Chechen & Caucasian Cuisine", "ar": "المطبخ الشيشاني والقوقازي"},
 }
 
 CTA = {
@@ -345,6 +349,7 @@ UZBEK_CUISINE_PAGE = {
         "en": "Message us on WhatsApp — we'll help you choose and arrange delivery.",
         "ar": "ابعتلنا واتساب — هنساعدك تختار ونظبطلك التوصيل.",
     },
+    "related": ["plov", "chechen_cuisine"],
 }
 
 PLOV_PAGE = {
@@ -366,6 +371,51 @@ PLOV_PAGE = {
         "en": "We take orders on WhatsApp — delivery across Makkah and to hotels.",
         "ar": "بنستقبل الطلبات عبر واتساب — توصيل في كل مكة وللفنادق.",
     },
+    "related": ["uzbek_cuisine"],
+}
+
+RUSSIAN_CUISINE_PAGE = {
+    "h1": {
+        "ru": "Русская кухня в Мекке: борщ, котлеты и другие домашние блюда",
+        "en": "Russian Food in Makkah: Borscht, Cutlets & Home-Style Dishes",
+        "ar": "المطبخ الروسي في مكة: بورش وكفتة وأطباق بيتية تانية",
+    },
+    "kicker": {"ru": "Мекка", "en": "Makkah", "ar": "مكة"},
+    "intro": {
+        "ru": "Если вы скучаете по вкусу борща, котлет с пюре или винегрета — MZ FOOD готовит настоящую русскую домашнюю кухню прямо в Мекке. Мы понимаем, как важно найти привычный вкус во время Умры или Хаджа, когда вы далеко от дома.",
+        "en": "If you're missing the taste of borscht, cutlets with mashed potato, or a good vinaigrette salad, MZ FOOD cooks real Russian home-style food right here in Makkah. We understand how much a familiar taste matters during Umrah or Hajj, far from home.",
+        "ar": "لو مشتاق لطعم البورش أو الكفتة مع البيوريه أو سلطة الفينيغريت، MZ FOOD بتطبخ أكل روسي بيتي حقيقي هنا في مكة. إحنا فاهمين قد إيه الطعم المألوف مهم وانت بعيد عن بيتك في العمرة أو الحج.",
+    },
+    "dish_keys": ["borsch", "kotlety", "vinegret", "bliny_myaso"],
+    "closing_title": {"ru": "Заказать русскую еду в Мекке", "en": "Order Russian food in Makkah", "ar": "اطلب أكل روسي في مكة"},
+    "closing_text": {
+        "ru": "Пишите нам в WhatsApp — на русском языке, доставка по Мекке и в отели.",
+        "en": "Message us on WhatsApp — we speak Russian, with delivery across Makkah and to hotels.",
+        "ar": "ابعتلنا واتساب — بنتكلم روسي، وبنوصل في كل مكة وللفنادق.",
+    },
+    "related": ["chechen_cuisine"],
+}
+
+CHECHEN_CUISINE_PAGE = {
+    "h1": {
+        "ru": "Чеченская и кавказская кухня в Мекке: хычины и хингалш",
+        "en": "Chechen & Caucasian Food in Makkah: Khychiny and Khingalsh",
+        "ar": "المطبخ الشيشاني والقوقازي في مكة: خيتشيني وخينغالش",
+    },
+    "kicker": {"ru": "Мекка", "en": "Makkah", "ar": "مكة"},
+    "intro": {
+        "ru": "MZ FOOD готовит настоящие чеченские и кавказские блюда — хычины с сыром, хингалш и лагман, который тоже любят на Кавказе. Знакомый вкус для гостей из Чечни, Дагестана и всего Северного Кавказа, приехавших в Мекку на Умру или Хадж.",
+        "en": "MZ FOOD cooks real Chechen and Caucasian dishes — khychiny with cheese, khingalsh, and lagman, which is loved across the Caucasus too. A familiar taste for guests from Chechnya, Dagestan and the wider North Caucasus visiting Makkah for Umrah or Hajj.",
+        "ar": "MZ FOOD بتطبخ أطباق شيشانية وقوقازية حقيقية — خيتشيني بالجبن، خينغالش، ولغمان اللي كمان بيتحبه في القوقاز. طعم مألوف لضيوف من الشيشان وداغستان وشمال القوقاز جايين مكة للعمرة أو الحج.",
+    },
+    "dish_keys": ["khychiny_syr", "khingalsh", "lagman"],
+    "closing_title": {"ru": "Заказать чеченскую кухню", "en": "Order Chechen food", "ar": "اطلب أكل شيشاني"},
+    "closing_text": {
+        "ru": "Пишите нам в WhatsApp — доставка по Мекке и в отели.",
+        "en": "Message us on WhatsApp — delivery across Makkah and to hotels.",
+        "ar": "ابعتلنا واتساب — بنوصل في كل مكة وللفنادق.",
+    },
+    "related": ["russian_cuisine", "uzbek_cuisine"],
 }
 
 META = {
@@ -432,5 +482,21 @@ META = {
         "desc": {"ru": "Плов с говядиной и сладкий плов с сухофруктами в Мекке. Домашний вкус, доставка и заказ через WhatsApp.",
                   "en": "Beef plov and sweet plov with dried fruit in Makkah. Home-style taste, delivery, order on WhatsApp.",
                   "ar": "بلوف باللحم البقري وبلوف حلو بالفواكه المجففة في مكة. طعم بيتي، توصيل، والطلب عبر واتساب."},
+    },
+    "russian_cuisine": {
+        "title": {"ru": "Русская кухня в Мекке — борщ, котлеты | MZ FOOD",
+                  "en": "Russian Food in Makkah — Borscht & Cutlets | MZ FOOD",
+                  "ar": "أكل روسي في مكة — بورش وكفتة | MZ FOOD"},
+        "desc": {"ru": "Борщ, котлеты с пюре, винегрет и другие блюда русской домашней кухни в Мекке. Заказ через WhatsApp, доставка по городу и в отели.",
+                  "en": "Borscht, cutlets with mash, vinaigrette salad and other Russian home-style dishes in Makkah. Order on WhatsApp, delivery across the city and to hotels.",
+                  "ar": "بورش وكفتة مع بيوريه وسلطة فينيغريت وأطباق روسية بيتية تانية في مكة. الطلب عبر واتساب، وتوصيل في المدينة والفنادق."},
+    },
+    "chechen_cuisine": {
+        "title": {"ru": "Чеченская и кавказская кухня в Мекке — хычины, хингалш | MZ FOOD",
+                  "en": "Chechen & Caucasian Food in Makkah — Khychiny, Khingalsh | MZ FOOD",
+                  "ar": "أكل شيشاني وقوقازي في مكة — خيتشيني وخينغالش | MZ FOOD"},
+        "desc": {"ru": "Хычины с сыром, хингалш, лагман и другие блюда чеченской и кавказской кухни в Мекке. Заказ через WhatsApp.",
+                  "en": "Khychiny with cheese, khingalsh, lagman and other Chechen and Caucasian dishes in Makkah. Order on WhatsApp.",
+                  "ar": "خيتشيني بالجبن وخينغالش ولغمان وأطباق شيشانية وقوقازية تانية في مكة. الطلب عبر واتساب."},
     },
 }
