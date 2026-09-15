@@ -19,6 +19,7 @@ from data import (  # noqa: E402
     MENU_CATEGORIES, KUNAFA, POPULAR_DISH_KEYS, HERO, WHY_MZFOOD, BRAND_STORY,
     HOW_TO_ORDER, LOW_CALORIES, REVIEWS_EMPTY, FINAL_CTA, ABOUT_PRINCIPLES,
     DELIVERY_AREAS, DELIVERY_STEPS, HOTELS_TEASER, META,
+    UZBEK_CUISINE_PAGE, PLOV_PAGE,
 )
 from icons import icon  # noqa: E402
 
@@ -503,6 +504,11 @@ def menu_body(lang):
   <a class="btn btn-whatsapp" href="{WA_GENERAL[lang]}">{icon('whatsapp',16)}{CTA['order_whatsapp'][lang]}</a>
 </div>"""
 
+    read_also = {
+        "ru": "Читайте также",
+        "en": "You might also like",
+        "ar": "اقرأ أيضًا",
+    }[lang]
     return f"""
 {page_header_html(lang, 'menu', {"ru":"Меню MZ FOOD","en":"MZ FOOD Menu","ar":"منيو MZ FOOD"}[lang], {"ru":"Домашние блюда, знакомые вам с детства","en":"Home-style dishes you've known since childhood","ar":"أطباق بيتية تعرفها من زمان"}[lang])}
 <section class="section--tight">
@@ -513,6 +519,11 @@ def menu_body(lang):
     <div class="section-cta-row" style="flex-direction:column;gap:16px;align-items:center;">
       <a class="btn btn-whatsapp btn-block" href="{WA_ORDER[lang]}" style="max-width:360px;">{icon('whatsapp',20)}{CTA['order_whatsapp'][lang]}</a>
       <a href="{page_path('delivery', lang)}" style="font-weight:700;text-decoration:underline;">{ {"ru":"Готовите для группы или отеля? Смотрите условия доставки","en":"Ordering for a group or hotel? See delivery details","ar":"بتطلب لمجموعة أو فندق؟ شوف تفاصيل التوصيل"}[lang] } →</a>
+    </div>
+    <div class="menu-note" style="margin-top:24px;text-align:center;">
+      {read_also}:
+      <a href="{page_path('uzbek_cuisine', lang)}" style="font-weight:700;text-decoration:underline;">{NAV['uzbek_cuisine'][lang]}</a> ·
+      <a href="{page_path('plov', lang)}" style="font-weight:700;text-decoration:underline;">{NAV['plov'][lang]}</a>
     </div>
   </div>
 </section>
@@ -664,6 +675,54 @@ def lowcalories_body(lang):
 """
 
 
+def cuisine_landing_body(lang, page_key, data):
+    """Shared renderer for non-branded SEO landing pages (Uzbek cuisine, Plov) —
+    same visual language as the rest of the site (page-header, dish-grid, final-cta),
+    just a different, genuinely unique block of copy and a curated subset of real dishes."""
+    items = all_items_by_key()
+    dish_cards = "".join(dish_card_html(lang, items[k]) for k in data["dish_keys"])
+    note_html = f'<p class="menu-note">{data["note"][lang]}</p>' if data.get("note") else ""
+    other_key = "plov" if page_key == "uzbek_cuisine" else "uzbek_cuisine"
+    cross_link_text = {
+        "ru": "Ещё узбекская и среднеазиатская кухня" if page_key == "plov" else "Отдельная страница про плов",
+        "en": "More Uzbek & Central Asian dishes" if page_key == "plov" else "See our dedicated plov page",
+        "ar": "المزيد عن المطبخ الأوزبكي وآسيا الوسطى" if page_key == "plov" else "صفحة خاصة عن البلوف",
+    }[lang]
+    return f"""
+{page_header_html(lang, page_key, data['h1'][lang], data['kicker'][lang])}
+<section class="section--tight">
+  <div class="container container--narrow">
+    <p>{data['intro'][lang]}</p>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <div class="dish-grid">{dish_cards}</div>
+    {note_html}
+    <div class="section-cta-row" style="flex-direction:column;gap:16px;align-items:center;">
+      <a class="btn btn-outline" href="{page_path('menu', lang)}">{CTA['view_full_menu'][lang]}</a>
+      <a href="{page_path(other_key, lang)}" style="font-weight:700;text-decoration:underline;">{cross_link_text} →</a>
+    </div>
+  </div>
+</section>
+<section class="section-deep final-cta">
+  <div class="container container--narrow">
+    <h2>{data['closing_title'][lang]}</h2>
+    <p>{data['closing_text'][lang]}</p>
+    <a class="btn btn-whatsapp" href="{WA_ORDER[lang]}">{icon('whatsapp',22)}{CTA['order_whatsapp'][lang]}</a>
+  </div>
+</section>
+"""
+
+
+def uzbek_cuisine_body(lang):
+    return cuisine_landing_body(lang, "uzbek_cuisine", UZBEK_CUISINE_PAGE)
+
+
+def plov_body(lang):
+    return cuisine_landing_body(lang, "plov", PLOV_PAGE)
+
+
 def error_404_body(lang):
     return f"""
 <section class="error-page">
@@ -691,6 +750,8 @@ PAGE_BUILDERS = {
     "reviews": reviews_body,
     "contacts": contacts_body,
     "lowcalories": lowcalories_body,
+    "uzbek_cuisine": uzbek_cuisine_body,
+    "plov": plov_body,
 }
 
 
@@ -767,7 +828,7 @@ def copy_assets():
 def clean_old_build():
     """Remove the previous Next.js static-export output. Keep real assets
     (logo.jpg, favicon.ico) and the Google Search Console verification file."""
-    keep_root_files = {"logo.jpg", "favicon.ico", "google5fb6f872ceaff2fa.html", ".nojekyll", ".git", "build", "CNAME"}
+    keep_root_files = {"logo.jpg", "favicon.ico", "google5fb6f872ceaff2fa.html", ".nojekyll", ".git", "build", "CNAME", ".gitignore"}
     keep_root_dirs = {"build", ".git"}
     for name in os.listdir(REPO_ROOT):
         full = os.path.join(REPO_ROOT, name)

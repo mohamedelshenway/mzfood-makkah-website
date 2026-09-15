@@ -26,6 +26,11 @@ SLUGS = {
     "reviews":     {"ru": "otzyvy",      "en": "reviews",      "ar": "reviews"},
     "contacts":    {"ru": "kontakty",    "en": "contacts",     "ar": "contacts"},
     "lowcalories": {"ru": "low-calories","en": "low-calories", "ar": "low-calories"},
+    # Non-branded SEO landing pages (added 15 Sep 2026) — for searchers who don't
+    # know the MZ FOOD name yet and search by cuisine/dish instead. Not in main nav,
+    # but included in sitemap/hreflang and cross-linked from Menu.
+    "uzbek_cuisine": {"ru": "uzbekskaya-kuhnya-v-mekke", "en": "uzbek-food-makkah", "ar": "uzbek-food-makkah"},
+    "plov":          {"ru": "plov-v-mekke",              "en": "plov-in-makkah",   "ar": "plov-in-makkah"},
 }
 
 PAGE_ORDER = ["home", "menu", "about", "delivery", "reviews", "contacts"]
@@ -52,6 +57,9 @@ NAV = {
     "reviews":  {"ru": "Отзывы",   "en": "Reviews",  "ar": "التقييمات"},
     "contacts": {"ru": "Контакты", "en": "Contacts", "ar": "تواصل"},
     "lowcalories": {"ru": "Low Calories", "en": "Low Calories", "ar": "Low Calories"},
+    # Breadcrumb labels only — these two are not in PAGE_ORDER, so they don't appear in the main nav.
+    "uzbek_cuisine": {"ru": "Узбекская кухня", "en": "Uzbek Cuisine", "ar": "المطبخ الأوزبكي"},
+    "plov": {"ru": "Плов", "en": "Plov", "ar": "البلوف"},
 }
 
 CTA = {
@@ -305,6 +313,61 @@ HOTELS_TEASER = {
     },
 }
 
+# ---------------------------------------------------------------------------
+# Non-branded SEO landing pages (added 15 Sep 2026).
+# Goal: appear for searchers who don't know "MZ FOOD" yet and search by cuisine
+# or dish instead (see seo-strategy doc, section 4). Content is genuinely
+# different from the homepage/menu (not duplicate content), uses only real
+# menu items already listed in MENU_CATEGORIES above, and is written naturally
+# rather than keyword-stuffed.
+# ---------------------------------------------------------------------------
+UZBEK_CUISINE_PAGE = {
+    "h1": {
+        "ru": "Узбекская кухня в Мекке: плов и лагман",
+        "en": "Uzbek & Central Asian Food in Makkah: Plov and Lagman",
+        "ar": "المطبخ الأوزبكي في مكة: بلوف ولغمان",
+    },
+    "kicker": {"ru": "Мекка", "en": "Makkah", "ar": "مكة"},
+    "intro": {
+        "ru": "Многие блюда, которые готовит MZ FOOD, — общие для русской, чеченской, кавказской и среднеазиатской кухни. Поэтому гости из Узбекистана, Таджикистана и Киргизстана тоже находят у нас знакомый вкус. Если вы ищете узбекскую кухню в Мекке или привычный плов, — вот несколько блюд, которые стоит попробовать.",
+        "en": "Many of the dishes MZ FOOD cooks are shared across Russian, Chechen, Caucasian and Central Asian cuisine. That's why guests from Uzbekistan, Tajikistan and Kyrgyzstan often find a familiar taste here too. If you're looking for Uzbek food in Makkah or a plov you already know, here are a few dishes worth trying.",
+        "ar": "كتير من الأطباق اللي بتعملها MZ FOOD مشتركة بين المطبخ الروسي والشيشاني والقوقازي وآسيا الوسطى. عشان كده ضيوف من أوزبكستان وطاجيكستان وقيرغيزستان بيلاقوا عندنا طعم مألوف. لو بتدوّر على أكل أوزبكي في مكة أو بلوف تعرفه كويس، دول كام طبق يستاهلوا التجربة.",
+    },
+    "dish_keys": ["plov_govyadina", "lagman", "plov_sweet"],
+    "note": {
+        "ru": "Мы не позиционируем себя как узбекский ресторан — MZ FOOD готовит русскую, чеченскую и кавказскую кухню, часть блюд которой знакома и гостям из Центральной Азии.",
+        "en": "We don't present ourselves as an Uzbek restaurant — MZ FOOD cooks Russian, Chechen and Caucasian food, and some of it happens to be familiar to guests from Central Asia too.",
+        "ar": "احنا مش بنقدّم نفسنا كمطعم أوزبكي — MZ FOOD بتطبخ أكل روسي وشيشاني وقوقازي، وجزء منه بيبقى مألوف كمان لضيوف آسيا الوسطى.",
+    },
+    "closing_title": {"ru": "Хотите попробовать?", "en": "Want to try it?", "ar": "عايز تجرب؟"},
+    "closing_text": {
+        "ru": "Напишите нам в WhatsApp — поможем выбрать и оформим доставку.",
+        "en": "Message us on WhatsApp — we'll help you choose and arrange delivery.",
+        "ar": "ابعتلنا واتساب — هنساعدك تختار ونظبطلك التوصيل.",
+    },
+}
+
+PLOV_PAGE = {
+    "h1": {
+        "ru": "Плов в Мекке",
+        "en": "Plov in Makkah",
+        "ar": "بلوف في مكة",
+    },
+    "kicker": {"ru": "Мекка", "en": "Makkah", "ar": "مكة"},
+    "intro": {
+        "ru": "Плов — одно из самых узнаваемых блюд узбекской, таджикской и в целом среднеазиатской кухни, но его так же готовят и любят в Чечне, на Кавказе и в России. В MZ FOOD есть два варианта плова — сытный плов с говядиной и сладкий плов с сухофруктами.",
+        "en": "Plov is one of the most recognizable dishes of Uzbek, Tajik and Central Asian cuisine in general, but it's also cooked and loved in Chechnya, the Caucasus and Russia. MZ FOOD serves two versions — a hearty beef plov and a sweet plov with dried fruit.",
+        "ar": "البلوف من أشهر أطباق المطبخ الأوزبكي والطاجيكي وآسيا الوسطى بشكل عام، لكنه كمان معروف ومحبوب في الشيشان والقوقاز وروسيا. في MZ FOOD عندنا نسختين من البلوف — بلوف باللحم البقري وبلوف حلو بالفواكه المجففة.",
+    },
+    "dish_keys": ["plov_govyadina", "plov_sweet"],
+    "closing_title": {"ru": "Заказать плов", "en": "Order plov", "ar": "اطلب بلوف"},
+    "closing_text": {
+        "ru": "Заказ принимаем через WhatsApp — доставка по Мекке и в отели.",
+        "en": "We take orders on WhatsApp — delivery across Makkah and to hotels.",
+        "ar": "بنستقبل الطلبات عبر واتساب — توصيل في كل مكة وللفنادق.",
+    },
+}
+
 META = {
     "home": {
         "title": {
@@ -353,5 +416,21 @@ META = {
         "desc": {"ru": "Low Calories — линейка более лёгких блюд от MZ FOOD для гостей, которые следят за питанием.",
                   "en": "Low Calories — a lighter line of dishes by MZ FOOD for health-conscious guests.",
                   "ar": "Low Calories — خط أطباق أخف من MZ FOOD للضيوف المهتمين بنوعية أكلهم."},
+    },
+    "uzbek_cuisine": {
+        "title": {"ru": "Узбекская кухня в Мекке — плов, лагман | MZ FOOD",
+                  "en": "Uzbek Food in Makkah — Plov & Lagman | MZ FOOD",
+                  "ar": "أكل أوزبكي في مكة — بلوف ولغمان | MZ FOOD"},
+        "desc": {"ru": "Плов, лагман и другие блюда среднеазиатской кухни в Мекке. Домашний вкус для гостей из Узбекистана, Таджикистана и Киргизстана. Заказ через WhatsApp.",
+                  "en": "Plov, lagman and other Central Asian dishes in Makkah. A familiar home-style taste for guests from Uzbekistan, Tajikistan and Kyrgyzstan. Order on WhatsApp.",
+                  "ar": "بلوف ولغمان وأطباق تانية من مطبخ آسيا الوسطى في مكة. طعم بيتي مألوف لضيوف أوزبكستان وطاجيكستان وقيرغيزستان. الطلب عبر واتساب."},
+    },
+    "plov": {
+        "title": {"ru": "Плов в Мекке — заказать с доставкой | MZ FOOD",
+                  "en": "Plov in Makkah — Order with Delivery | MZ FOOD",
+                  "ar": "بلوف في مكة — اطلب مع توصيل | MZ FOOD"},
+        "desc": {"ru": "Плов с говядиной и сладкий плов с сухофруктами в Мекке. Домашний вкус, доставка и заказ через WhatsApp.",
+                  "en": "Beef plov and sweet plov with dried fruit in Makkah. Home-style taste, delivery, order on WhatsApp.",
+                  "ar": "بلوف باللحم البقري وبلوف حلو بالفواكه المجففة في مكة. طعم بيتي، توصيل، والطلب عبر واتساب."},
     },
 }
