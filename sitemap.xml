@@ -1,39 +1,130 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url>
-<loc>https://mohamedelshenway.github.io/mzfood-makkah-website/</loc>
-<lastmod>2026-09-14T03:31:57.364Z</lastmod>
-<changefreq>weekly</changefreq>
-<priority>1</priority>
-</url>
-<url>
-<loc>https://mohamedelshenway.github.io/mzfood-makkah-website/menu/</loc>
-<lastmod>2026-09-14T03:31:57.365Z</lastmod>
-<changefreq>weekly</changefreq>
-<priority>0.9</priority>
-</url>
-<url>
-<loc>https://mohamedelshenway.github.io/mzfood-makkah-website/o-nas/</loc>
-<lastmod>2026-09-14T03:31:57.365Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.6</priority>
-</url>
-<url>
-<loc>https://mohamedelshenway.github.io/mzfood-makkah-website/dostavka/</loc>
-<lastmod>2026-09-14T03:31:57.365Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.6</priority>
-</url>
-<url>
-<loc>https://mohamedelshenway.github.io/mzfood-makkah-website/otzyvy/</loc>
-<lastmod>2026-09-14T03:31:57.365Z</lastmod>
-<changefreq>weekly</changefreq>
-<priority>0.5</priority>
-</url>
-<url>
-<loc>https://mohamedelshenway.github.io/mzfood-makkah-website/kontakty/</loc>
-<lastmod>2026-09-14T03:31:57.365Z</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.6</priority>
-</url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://mohamedelshenway.github.io/mzfood-makkah-website/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://mohamedelshenway.github.io/mzfood-makkah-website/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mohamedelshenway.github.io/mzfood-makkah-website/en/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://mohamedelshenway.github.io/mzfood-makkah-website/ar/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mohamedelshenway.github.io/mzfood-makkah-website/"/>
+  </url>
+  <url>
+    <loc>https://mohamedelshenway.github.io/mzfood-makkah-website/menu/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://mohamedelshenway.github.io/mzfood-makkah-website/menu/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mohamedelshenway.github.io/mzfood-makkah-website/en/menu/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://mohamedelshenway.github.io/mzfood-makkah-website/ar/menu/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mohamedelshenway.github.io/mzfood-makkah-website/menu/"/>
+  </url>
+  <url>
+    <loc>https://mohamedelshenway.github.io/mzfood-makkah-website/o-nas/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://mohamedelshenway.github.io/mzfood-makkah-website/o-nas/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mohamedelshenway.github.io/mzfood-makkah-website/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://mohamedelshenway.github.io/mzfood-makkah-website/ar/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mohamedelshenway.github.io/mzfood-makkah-website/o-nas/"/>
+  </url>
+  <url>
+    <loc>https://mohamedelshenway.github.io/mzfood-makkah-website/dostavka/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://mohamedelshenway.github.io/mzfood-makkah-website/dostavka/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mohamedelshenway.github.io/mzfood-makkah-website/en/delivery/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://mohamedelshenway.github.io/mzfood-makkah-website/ar/delivery/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mohamedelshenway.github.io/mzfood-makkah-website/dostavka/"/>
+  </url>
+  <url>
+    <loc>https://mohamedelshenway.github.io/mzfood-makkah-website/otzyvy/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://mohamedelshenway.github.io/mzfood-makkah-website/otzyvy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mohamedelshenway.github.io/mzfood-makkah-website/en/reviews/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://mohamedelshenway.github.io/mzfood-makkah-website/ar/reviews/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mohamedelshenway.github.io/mzfood-makkah-website/otzyvy/"/>
+  </url>
+  <url>
+    <loc>https://mohamedelshenway.github.io/mzfood-makkah-website/kontakty/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://mohamedelshenway.github.io/mzfood-makkah-website/kontakty/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mohamedelshenway.github.io/mzfood-makkah-website/en/contacts/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://mohamedelshenway.github.io/mzfood-makkah-website/ar/contacts/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mohamedelshenway.github.io/mzfood-makkah-website/kontakty/"/>
+  </url>
+  <url>
+    <loc>https://mohamedelshenway.github.io/mzfood-makkah-website/en/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://mohamedelshenway.github.io/mzfood-makkah-website/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mohamedelshenway.github.io/mzfood-makkah-website/en/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://mohamedelshenway.github.io/mzfood-makkah-website/ar/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mohamedelshenway.github.io/mzfood-makkah-website/"/>
+  </url>
+  <url>
+    <loc>https://mohamedelshenway.github.io/mzfood-makkah-website/en/menu/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://mohamedelshenway.github.io/mzfood-makkah-website/menu/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mohamedelshenway.github.io/mzfood-makkah-website/en/menu/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://mohamedelshenway.github.io/mzfood-makkah-website/ar/menu/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mohamedelshenway.github.io/mzfood-makkah-website/menu/"/>
+  </url>
+  <url>
+    <loc>https://mohamedelshenway.github.io/mzfood-makkah-website/en/about/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://mohamedelshenway.github.io/mzfood-makkah-website/o-nas/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mohamedelshenway.github.io/mzfood-makkah-website/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://mohamedelshenway.github.io/mzfood-makkah-website/ar/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mohamedelshenway.github.io/mzfood-makkah-website/o-nas/"/>
+  </url>
+  <url>
+    <loc>https://mohamedelshenway.github.io/mzfood-makkah-website/en/delivery/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://mohamedelshenway.github.io/mzfood-makkah-website/dostavka/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mohamedelshenway.github.io/mzfood-makkah-website/en/delivery/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://mohamedelshenway.github.io/mzfood-makkah-website/ar/delivery/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mohamedelshenway.github.io/mzfood-makkah-website/dostavka/"/>
+  </url>
+  <url>
+    <loc>https://mohamedelshenway.github.io/mzfood-makkah-website/en/reviews/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://mohamedelshenway.github.io/mzfood-makkah-website/otzyvy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mohamedelshenway.github.io/mzfood-makkah-website/en/reviews/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://mohamedelshenway.github.io/mzfood-makkah-website/ar/reviews/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mohamedelshenway.github.io/mzfood-makkah-website/otzyvy/"/>
+  </url>
+  <url>
+    <loc>https://mohamedelshenway.github.io/mzfood-makkah-website/en/contacts/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://mohamedelshenway.github.io/mzfood-makkah-website/kontakty/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mohamedelshenway.github.io/mzfood-makkah-website/en/contacts/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://mohamedelshenway.github.io/mzfood-makkah-website/ar/contacts/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mohamedelshenway.github.io/mzfood-makkah-website/kontakty/"/>
+  </url>
+  <url>
+    <loc>https://mohamedelshenway.github.io/mzfood-makkah-website/ar/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://mohamedelshenway.github.io/mzfood-makkah-website/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mohamedelshenway.github.io/mzfood-makkah-website/en/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://mohamedelshenway.github.io/mzfood-makkah-website/ar/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mohamedelshenway.github.io/mzfood-makkah-website/"/>
+  </url>
+  <url>
+    <loc>https://mohamedelshenway.github.io/mzfood-makkah-website/ar/menu/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://mohamedelshenway.github.io/mzfood-makkah-website/menu/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mohamedelshenway.github.io/mzfood-makkah-website/en/menu/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://mohamedelshenway.github.io/mzfood-makkah-website/ar/menu/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mohamedelshenway.github.io/mzfood-makkah-website/menu/"/>
+  </url>
+  <url>
+    <loc>https://mohamedelshenway.github.io/mzfood-makkah-website/ar/about/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://mohamedelshenway.github.io/mzfood-makkah-website/o-nas/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mohamedelshenway.github.io/mzfood-makkah-website/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://mohamedelshenway.github.io/mzfood-makkah-website/ar/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mohamedelshenway.github.io/mzfood-makkah-website/o-nas/"/>
+  </url>
+  <url>
+    <loc>https://mohamedelshenway.github.io/mzfood-makkah-website/ar/delivery/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://mohamedelshenway.github.io/mzfood-makkah-website/dostavka/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mohamedelshenway.github.io/mzfood-makkah-website/en/delivery/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://mohamedelshenway.github.io/mzfood-makkah-website/ar/delivery/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mohamedelshenway.github.io/mzfood-makkah-website/dostavka/"/>
+  </url>
+  <url>
+    <loc>https://mohamedelshenway.github.io/mzfood-makkah-website/ar/reviews/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://mohamedelshenway.github.io/mzfood-makkah-website/otzyvy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mohamedelshenway.github.io/mzfood-makkah-website/en/reviews/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://mohamedelshenway.github.io/mzfood-makkah-website/ar/reviews/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mohamedelshenway.github.io/mzfood-makkah-website/otzyvy/"/>
+  </url>
+  <url>
+    <loc>https://mohamedelshenway.github.io/mzfood-makkah-website/ar/contacts/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://mohamedelshenway.github.io/mzfood-makkah-website/kontakty/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mohamedelshenway.github.io/mzfood-makkah-website/en/contacts/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://mohamedelshenway.github.io/mzfood-makkah-website/ar/contacts/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mohamedelshenway.github.io/mzfood-makkah-website/kontakty/"/>
+  </url>
 </urlset>
