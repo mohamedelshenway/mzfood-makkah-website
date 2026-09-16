@@ -20,6 +20,7 @@ from data import (  # noqa: E402
     HOW_TO_ORDER, LOW_CALORIES, REVIEWS_EMPTY, FINAL_CTA, ABOUT_PRINCIPLES,
     DELIVERY_AREAS, DELIVERY_STEPS, HOTELS_TEASER, META,
     UZBEK_CUISINE_PAGE, PLOV_PAGE, RUSSIAN_CUISINE_PAGE, CHECHEN_CUISINE_PAGE,
+    LAGMAN_PAGE, HOTEL_DELIVERY_PAGE,
 )
 from icons import icon  # noqa: E402
 
@@ -509,7 +510,7 @@ def menu_body(lang):
         "en": "You might also like",
         "ar": "اقرأ أيضًا",
     }[lang]
-    cuisine_landing_keys = ["russian_cuisine", "chechen_cuisine", "uzbek_cuisine", "plov"]
+    cuisine_landing_keys = ["russian_cuisine", "chechen_cuisine", "uzbek_cuisine", "plov", "lagman"]
     cuisine_links = " · ".join(
         f'<a href="{page_path(k, lang)}" style="font-weight:700;text-decoration:underline;">{NAV[k][lang]}</a>'
         for k in cuisine_landing_keys
@@ -523,7 +524,7 @@ def menu_body(lang):
     {off_menu}
     <div class="section-cta-row" style="flex-direction:column;gap:16px;align-items:center;">
       <a class="btn btn-whatsapp btn-block" href="{WA_ORDER[lang]}" style="max-width:360px;">{icon('whatsapp',20)}{CTA['order_whatsapp'][lang]}</a>
-      <a href="{page_path('delivery', lang)}" style="font-weight:700;text-decoration:underline;">{ {"ru":"Готовите для группы или отеля? Смотрите условия доставки","en":"Ordering for a group or hotel? See delivery details","ar":"بتطلب لمجموعة أو فندق؟ شوف تفاصيل التوصيل"}[lang] } →</a>
+      <a href="{page_path('hotel_delivery', lang)}" style="font-weight:700;text-decoration:underline;">{ {"ru":"Готовите для группы или отеля? Смотрите условия доставки","en":"Ordering for a group or hotel? See delivery details","ar":"بتطلب لمجموعة أو فندق؟ شوف تفاصيل التوصيل"}[lang] } →</a>
     </div>
     <div class="menu-note" style="margin-top:24px;text-align:center;">
       {read_also}:
@@ -742,6 +743,92 @@ def chechen_cuisine_body(lang):
     return cuisine_landing_body(lang, "chechen_cuisine", CHECHEN_CUISINE_PAGE)
 
 
+def lagman_body(lang):
+    return cuisine_landing_body(lang, "lagman", LAGMAN_PAGE)
+
+
+def hotel_delivery_body(lang):
+    """Non-branded SEO landing page for hotel/group delivery search intent
+    (e.g. 'доставка еды в отель Мекка'). Reuses the real, already-approved
+    DELIVERY_AREAS / DELIVERY_STEPS / HOTELS_TEASER content blocks instead of
+    inventing new claims, with its own unique intro/CTA copy so it isn't a
+    duplicate of the general /delivery page."""
+    items = all_items_by_key()
+    dish_cards = "".join(dish_card_html(lang, items[k]) for k in HOTEL_DELIVERY_PAGE["dish_keys"])
+    areas = "".join(f"""<div class="feature-card">
+  <div class="feature-icon">{icon('truck',22)}</div>
+  <h3>{a['title'][lang]}</h3>
+  <p>{a['text'][lang]}</p>
+</div>""" for a in DELIVERY_AREAS)
+    steps = "".join(f"""<div class="step">
+  <div class="step-num">{s['n']}</div>
+  <p>{s['text'][lang]}</p>
+</div>""" for s in DELIVERY_STEPS)
+
+    related_keys = HOTEL_DELIVERY_PAGE.get("related", [])
+    read_also_label = {"ru": "Читайте также", "en": "You might also like", "ar": "اقرأ أيضًا"}[lang]
+    related_links = " · ".join(
+        f'<a href="{page_path(k, lang)}" style="font-weight:700;text-decoration:underline;">{NAV[k][lang]}</a>'
+        for k in related_keys
+    )
+    related_html = (
+        f'<div class="menu-note" style="margin-top:16px;text-align:center;">{read_also_label}: {related_links}</div>'
+        if related_links else ""
+    )
+
+    return f"""
+{page_header_html(lang, 'hotel_delivery', HOTEL_DELIVERY_PAGE['h1'][lang], HOTEL_DELIVERY_PAGE['kicker'][lang])}
+<section class="section--tight">
+  <div class="container container--narrow">
+    <p>{HOTEL_DELIVERY_PAGE['intro'][lang]}</p>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <div class="grid-3">{areas}</div>
+  </div>
+</section>
+<section class="section-alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">{ {"ru":"Что можно заказать","en":"What you can order","ar":"إيه اللي ممكن تطلبه"}[lang] }</span>
+      <h2>{ {"ru":"Несколько популярных блюд","en":"A few popular dishes","ar":"شوية أطباق مشهورة"}[lang] }</h2>
+    </div>
+    <div class="dish-grid">{dish_cards}</div>
+    <div class="section-cta-row">
+      <a class="btn btn-outline" href="{page_path('menu', lang)}">{CTA['view_full_menu'][lang]}</a>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <div class="section-head" style="margin-inline:auto;text-align:center;max-width:620px;">
+      <span class="eyebrow">{ {"ru":"Как оформить","en":"How to order","ar":"إزاي تطلب"}[lang] }</span>
+      <h2>{ {"ru":"Через WhatsApp — на русском языке","en":"On WhatsApp — in Russian","ar":"عبر واتساب — باللغة الروسية"}[lang] }</h2>
+    </div>
+    <div class="steps">{steps}</div>
+  </div>
+</section>
+<section class="section-alt">
+  <div class="container container--narrow" style="text-align:center;">
+    <h2>{HOTELS_TEASER['title'][lang]}</h2>
+    <p>{HOTELS_TEASER['text'][lang]}</p>
+    <div class="hero-actions" style="justify-content:center;">
+      <a class="btn btn-whatsapp" href="{WA_PARTNER[lang]}">{icon('whatsapp',20)}{CTA['discuss_partner'][lang]}</a>
+    </div>
+    {related_html}
+  </div>
+</section>
+<section class="section-deep final-cta">
+  <div class="container container--narrow">
+    <h2>{HOTEL_DELIVERY_PAGE['closing_title'][lang]}</h2>
+    <p>{HOTEL_DELIVERY_PAGE['closing_text'][lang]}</p>
+    <a class="btn btn-whatsapp" href="{WA_ORDER[lang]}">{icon('whatsapp',22)}{CTA['order_whatsapp'][lang]}</a>
+  </div>
+</section>
+"""
+
+
 def error_404_body(lang):
     return f"""
 <section class="error-page">
@@ -773,6 +860,8 @@ PAGE_BUILDERS = {
     "plov": plov_body,
     "russian_cuisine": russian_cuisine_body,
     "chechen_cuisine": chechen_cuisine_body,
+    "lagman": lagman_body,
+    "hotel_delivery": hotel_delivery_body,
 }
 
 

@@ -33,6 +33,8 @@ SLUGS = {
     "plov":          {"ru": "plov-v-mekke",              "en": "plov-in-makkah",   "ar": "plov-in-makkah"},
     "russian_cuisine": {"ru": "russkaya-kuhnya-v-mekke",     "en": "russian-food-makkah", "ar": "russian-food-makkah"},
     "chechen_cuisine": {"ru": "chechenskaya-kuhnya-v-mekke", "en": "chechen-food-makkah", "ar": "chechen-food-makkah"},
+    "lagman":          {"ru": "lagman-v-mekke",              "en": "lagman-makkah",       "ar": "lagman-makkah"},
+    "hotel_delivery":  {"ru": "dostavka-edy-v-otel-mekka",   "en": "hotel-food-delivery-makkah", "ar": "hotel-food-delivery-makkah"},
 }
 
 PAGE_ORDER = ["home", "menu", "about", "delivery", "reviews", "contacts"]
@@ -64,6 +66,8 @@ NAV = {
     "plov": {"ru": "Плов", "en": "Plov", "ar": "البلوف"},
     "russian_cuisine": {"ru": "Русская кухня", "en": "Russian Cuisine", "ar": "المطبخ الروسي"},
     "chechen_cuisine": {"ru": "Чеченская и кавказская кухня", "en": "Chechen & Caucasian Cuisine", "ar": "المطبخ الشيشاني والقوقازي"},
+    "lagman": {"ru": "Лагман", "en": "Lagman", "ar": "لغمان"},
+    "hotel_delivery": {"ru": "Доставка в отели и группам", "en": "Hotel & Group Delivery", "ar": "توصيل للفنادق والمجموعات"},
 }
 
 CTA = {
@@ -349,7 +353,7 @@ UZBEK_CUISINE_PAGE = {
         "en": "Message us on WhatsApp — we'll help you choose and arrange delivery.",
         "ar": "ابعتلنا واتساب — هنساعدك تختار ونظبطلك التوصيل.",
     },
-    "related": ["plov", "chechen_cuisine"],
+    "related": ["plov", "lagman", "chechen_cuisine"],
 }
 
 PLOV_PAGE = {
@@ -371,7 +375,7 @@ PLOV_PAGE = {
         "en": "We take orders on WhatsApp — delivery across Makkah and to hotels.",
         "ar": "بنستقبل الطلبات عبر واتساب — توصيل في كل مكة وللفنادق.",
     },
-    "related": ["uzbek_cuisine"],
+    "related": ["uzbek_cuisine", "lagman"],
 }
 
 RUSSIAN_CUISINE_PAGE = {
@@ -393,7 +397,7 @@ RUSSIAN_CUISINE_PAGE = {
         "en": "Message us on WhatsApp — we speak Russian, with delivery across Makkah and to hotels.",
         "ar": "ابعتلنا واتساب — بنتكلم روسي، وبنوصل في كل مكة وللفنادق.",
     },
-    "related": ["chechen_cuisine"],
+    "related": ["chechen_cuisine", "hotel_delivery"],
 }
 
 CHECHEN_CUISINE_PAGE = {
@@ -415,7 +419,51 @@ CHECHEN_CUISINE_PAGE = {
         "en": "Message us on WhatsApp — delivery across Makkah and to hotels.",
         "ar": "ابعتلنا واتساب — بنوصل في كل مكة وللفنادق.",
     },
-    "related": ["russian_cuisine", "uzbek_cuisine"],
+    "related": ["russian_cuisine", "uzbek_cuisine", "lagman"],
+}
+
+LAGMAN_PAGE = {
+    "h1": {
+        "ru": "Лагман в Мекке",
+        "en": "Lagman in Makkah",
+        "ar": "لغمان في مكة",
+    },
+    "kicker": {"ru": "Мекка", "en": "Makkah", "ar": "مكة"},
+    "intro": {
+        "ru": "Лагман — сытное блюдо с лапшой, мясом и овощами в наваристом бульоне, которое одинаково любят в Узбекистане, Таджикистане, на Кавказе и в Чечне. В MZ FOOD лагман готовят по традиционному рецепту — домашняя лапша, мясо и насыщенный бульон, а не быстрый суп-полуфабрикат.",
+        "en": "Lagman is a hearty noodle dish with meat and vegetables in a rich broth, loved equally in Uzbekistan, Tajikistan, the Caucasus and Chechnya. MZ FOOD cooks lagman the traditional way — home-style noodles, real meat and a rich broth, not a quick instant soup.",
+        "ar": "اللغمان طبق شهي من الشعرية واللحمة والخضار في شوربة غنية، محبوب بنفس القدر في أوزبكستان وطاجيكستان والقوقاز والشيشان. في MZ FOOD بنعمل اللغمان بالطريقة التقليدية — شعرية بيتي ولحمة حقيقية وشوربة غنية، مش شوربة سريعة جاهزة.",
+    },
+    "dish_keys": ["lagman"],
+    "closing_title": {"ru": "Заказать лагман", "en": "Order lagman", "ar": "اطلب لغمان"},
+    "closing_text": {
+        "ru": "Заказ принимаем через WhatsApp — доставка по Мекке и в отели.",
+        "en": "We take orders on WhatsApp — delivery across Makkah and to hotels.",
+        "ar": "بنستقبل الطلبات عبر واتساب — توصيل في كل مكة وللفنادق.",
+    },
+    "related": ["chechen_cuisine", "uzbek_cuisine"],
+}
+
+HOTEL_DELIVERY_PAGE = {
+    "h1": {
+        "ru": "Доставка еды в отель и для групп в Мекке",
+        "en": "Hotel & Group Food Delivery in Makkah",
+        "ar": "توصيل الأكل للفندق والمجموعات في مكة",
+    },
+    "kicker": {"ru": "Мекка", "en": "Makkah", "ar": "مكة"},
+    "intro": {
+        "ru": "Если вы остановились в отеле рядом с Харамом или организуете питание для паломнической группы, MZ FOOD доставит домашнюю халяльную еду прямо к вам — без похода по городу и поиска ресторана. Работаем с индивидуальными гостями, семьями, группами и их руководителями, а также с туроператорами и отелями.",
+        "en": "If you're staying at a hotel near the Haram or organizing meals for a pilgrimage group, MZ FOOD delivers home-style halal food straight to you — no need to search the city for a restaurant. We work with individual guests, families, groups and their leaders, as well as tour operators and hotels.",
+        "ar": "لو نازل في فندق قريب من الحرم أو بتنظّم أكل لمجموعة حجاج، MZ FOOD هتوصلك أكل بيتي حلال لحد عندك — من غير ما تدوّر على مطعم في المدينة. بنشتغل مع الضيوف الأفراد والعائلات والمجموعات وقادتها، وكمان مع منظمي الرحلات والفنادق.",
+    },
+    "dish_keys": ["borsch", "plov_govyadina", "khychiny_syr"],
+    "closing_title": {"ru": "Организовать доставку в отель", "en": "Arrange hotel delivery", "ar": "نظّم توصيل للفندق"},
+    "closing_text": {
+        "ru": "Напишите нам в WhatsApp название отеля и количество гостей — подготовим заказ и доставим вовремя.",
+        "en": "Message us on WhatsApp with your hotel name and guest count — we'll prepare and deliver on time.",
+        "ar": "ابعتلنا واتساب باسم الفندق وعدد الضيوف — هنجهز الطلب ونوصله في الميعاد.",
+    },
+    "related": ["russian_cuisine", "chechen_cuisine"],
 }
 
 META = {
@@ -498,5 +546,21 @@ META = {
         "desc": {"ru": "Хычины с сыром, хингалш, лагман и другие блюда чеченской и кавказской кухни в Мекке. Заказ через WhatsApp.",
                   "en": "Khychiny with cheese, khingalsh, lagman and other Chechen and Caucasian dishes in Makkah. Order on WhatsApp.",
                   "ar": "خيتشيني بالجبن وخينغالش ولغمان وأطباق شيشانية وقوقازية تانية في مكة. الطلب عبر واتساب."},
+    },
+    "lagman": {
+        "title": {"ru": "Лагман в Мекке — заказать с доставкой | MZ FOOD",
+                  "en": "Lagman in Makkah — Order with Delivery | MZ FOOD",
+                  "ar": "لغمان في مكة — اطلب مع توصيل | MZ FOOD"},
+        "desc": {"ru": "Лагман с мясом, лапшой и наваристым бульоном в Мекке — 500 мл, 35 SAR. Домашний вкус, заказ через WhatsApp, доставка по городу и в отели.",
+                  "en": "Lagman with meat, noodles and a rich broth in Makkah — 500 ml, 35 SAR. Home-style taste, order on WhatsApp, delivery across the city and to hotels.",
+                  "ar": "لغمان باللحمة والشعرية وشوربة غنية في مكة — 500 مل، 35 ريال. طعم بيتي، الطلب عبر واتساب، توصيل في المدينة والفنادق."},
+    },
+    "hotel_delivery": {
+        "title": {"ru": "Доставка еды в отель и для групп в Мекке | MZ FOOD",
+                  "en": "Hotel & Group Food Delivery in Makkah | MZ FOOD",
+                  "ar": "توصيل الأكل للفندق والمجموعات في مكة | MZ FOOD"},
+        "desc": {"ru": "Доставляем домашнюю халяльную еду в отели Мекки и организуем питание для паломнических групп. Работаем с группами, руководителями и туроператорами. Заказ через WhatsApp.",
+                  "en": "We deliver home-style halal food to hotels in Makkah and arrange meals for pilgrimage groups. We work with groups, group leaders and tour operators. Order on WhatsApp.",
+                  "ar": "بنوصل أكل بيتي حلال لفنادق مكة وبننظم وجبات لمجموعات الحجاج. بنشتغل مع المجموعات وقادتها ومنظمي الرحلات. الطلب عبر واتساب."},
     },
 }
