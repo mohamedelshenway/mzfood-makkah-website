@@ -17,7 +17,7 @@ from data import (  # noqa: E402
     BASE_URL, BASE_PATH, LANGS, DEFAULT_LANG, LANG_META, SLUGS, PAGE_ORDER,
     CONTACT, NAV, CTA, WA_TEXT, wa_link, wa_link_dish, SITE_TITLE, TAGLINE,
     MENU_CATEGORIES, KUNAFA, POPULAR_DISH_KEYS, HERO, WHY_MZFOOD, BRAND_STORY,
-    HOW_TO_ORDER, LOW_CALORIES, REVIEWS_EMPTY, FINAL_CTA, ABOUT_PRINCIPLES,
+    HOW_TO_ORDER, REVIEWS_EMPTY, FINAL_CTA, ABOUT_PRINCIPLES,
     DELIVERY_AREAS, DELIVERY_STEPS, HOTELS_TEASER, META,
     UZBEK_CUISINE_PAGE, PLOV_PAGE, RUSSIAN_CUISINE_PAGE, CHECHEN_CUISINE_PAGE,
     LAGMAN_PAGE, HOTEL_DELIVERY_PAGE,
@@ -31,7 +31,6 @@ WA_ORDER = wa_link("order")
 WA_PARTNER = wa_link("partner")
 WA_REVIEW = wa_link("review")
 WA_MENU_WORD = wa_link("menu_word")
-WA_LOWCAL = wa_link("lowcal")
 
 
 def bdi(text):
@@ -301,8 +300,14 @@ def dish_card_html(lang, item, show_note=False):
     wa = wa_link_dish(item["name"], item["weight"], item["price"])[lang]
     weight = item["weight"][lang]
     note = f' <span class="dish-note" style="color:#b34a2e;font-size:.75rem;">*</span>' if show_note and item.get("note_ru") else ""
+    if item.get("image"):
+        img_src = asset("dishes/" + item["image"])
+        img_alt = item["name"][lang]
+        photo_html = f'<img src="{img_src}" alt="{img_alt}" loading="lazy" width="800" height="600">'
+    else:
+        photo_html = f'<span>{ {"ru":"Фото скоро","en":"Photo coming soon","ar":"صورة قريبًا"}[lang] }</span>'
     return f"""<article class="dish-card">
-  <div class="dish-photo"><span>{ {"ru":"Фото скоро","en":"Photo coming soon","ar":"صورة قريبًا"}[lang] }</span></div>
+  <div class="dish-photo">{photo_html}</div>
   <div class="dish-body">
     <h3 class="dish-name">{item['name'][lang]}{note}</h3>
     {f'<p class="dish-weight">{weight}</p>' if weight else ''}
@@ -402,20 +407,6 @@ def home_body(lang):
   </div>
 </section>
 
-<section class="section-alt">
-  <div class="container">
-    <div class="lowcal-panel">
-      <div>
-        <span class="lowcal-badge">{LOW_CALORIES['title'][lang]}</span>
-        <h2>{LOW_CALORIES['title'][lang]}</h2>
-        <p>{LOW_CALORIES['subtitle'][lang]}</p>
-        <p style="font-size:.85rem;opacity:.85;">{LOW_CALORIES['pending_note'][lang]}</p>
-      </div>
-      <a class="btn btn-whatsapp" href="{page_path('lowcalories', lang)}">{icon('whatsapp',18)}{CTA['view_lowcal'][lang]}</a>
-    </div>
-  </div>
-</section>
-
 <section>
   <div class="container">
     <div class="trust-grid">
@@ -485,10 +476,19 @@ def menu_body(lang):
             note = ""
             if it.get("note_ru") and lang == "ru":
                 note = f' <span style="color:#b34a2e;font-weight:600;font-size:.78rem;">({it["note_ru"]})</span>'
+            if it.get("image"):
+                thumb_src = asset("dishes/" + it["image"])
+                thumb_alt = it["name"][lang]
+                thumb_html = f'<img class="menu-item-thumb" src="{thumb_src}" alt="{thumb_alt}" loading="lazy" width="56" height="56">'
+            else:
+                thumb_html = ""
             rows += f"""<div class="menu-item">
-  <div>
-    <div class="menu-item-name">{it['name'][lang]}{note}</div>
-    {f'<div class="menu-item-weight">{weight}</div>' if weight else ''}
+  <div class="menu-item-main">
+    {thumb_html}
+    <div>
+      <div class="menu-item-name">{it['name'][lang]}{note}</div>
+      {f'<div class="menu-item-weight">{weight}</div>' if weight else ''}
+    </div>
   </div>
   <div class="menu-item-price">{bdi(f"{it['price']} SAR")}</div>
 </div>"""
@@ -655,25 +655,6 @@ def contacts_body(lang):
     <div class="map-frame" style="max-width:900px;margin-inline:auto;">
       <iframe loading="lazy" title="MZ FOOD — Google Maps"
         src="https://www.google.com/maps?q={CONTACT['address_line'].replace(' ', '+')}+Makkah&output=embed"></iframe>
-    </div>
-  </div>
-</section>
-"""
-
-
-def lowcalories_body(lang):
-    return f"""
-{page_header_html(lang, 'lowcalories', LOW_CALORIES['title'][lang], "MZ FOOD")}
-<section class="section--tight">
-  <div class="container container--narrow" style="text-align:center;">
-    <p>{LOW_CALORIES['subtitle'][lang]}</p>
-    <div class="empty-state" style="margin-top:32px;">
-      <h3>{LOW_CALORIES['title'][lang]}</h3>
-      <p>{LOW_CALORIES['pending_note'][lang]}</p>
-      <div class="empty-state-actions">
-        <a class="btn btn-whatsapp" href="{WA_LOWCAL[lang]}">{icon('whatsapp',18)}{CTA['order_whatsapp'][lang]}</a>
-        <a class="btn btn-outline" href="{page_path('menu', lang)}">{CTA['view_full_menu'][lang]}</a>
-      </div>
     </div>
   </div>
 </section>
@@ -855,7 +836,6 @@ PAGE_BUILDERS = {
     "delivery": delivery_body,
     "reviews": reviews_body,
     "contacts": contacts_body,
-    "lowcalories": lowcalories_body,
     "uzbek_cuisine": uzbek_cuisine_body,
     "plov": plov_body,
     "russian_cuisine": russian_cuisine_body,
@@ -895,8 +875,6 @@ def build_sitemap():
     urls = []
     for lang in LANGS:
         for page_key in list(PAGE_BUILDERS.keys()):
-            if page_key == "lowcalories":
-                continue  # thin/placeholder page — keep out of sitemap until real content exists
             urls.append((page_url(page_key, lang), page_key, lang))
     entries = []
     for url, page_key, lang in urls:
@@ -929,10 +907,14 @@ Sitemap: {BASE_URL}/sitemap.xml
 def copy_assets():
     dst_css = os.path.join(REPO_ROOT, "assets", "css")
     dst_js = os.path.join(REPO_ROOT, "assets", "js")
+    dst_dishes = os.path.join(REPO_ROOT, "assets", "dishes")
     os.makedirs(dst_css, exist_ok=True)
     os.makedirs(dst_js, exist_ok=True)
     shutil.copy(os.path.join(os.path.dirname(__file__), "style.css"), os.path.join(dst_css, "style.css"))
     shutil.copy(os.path.join(os.path.dirname(__file__), "main.js"), os.path.join(dst_js, "main.js"))
+    src_dishes = os.path.join(os.path.dirname(__file__), "dishes")
+    if os.path.isdir(src_dishes):
+        shutil.copytree(src_dishes, dst_dishes, dirs_exist_ok=True)
 
 
 def clean_old_build():

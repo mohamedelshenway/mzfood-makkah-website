@@ -25,7 +25,6 @@ SLUGS = {
     "delivery":    {"ru": "dostavka",    "en": "delivery",     "ar": "delivery"},
     "reviews":     {"ru": "otzyvy",      "en": "reviews",      "ar": "reviews"},
     "contacts":    {"ru": "kontakty",    "en": "contacts",     "ar": "contacts"},
-    "lowcalories": {"ru": "low-calories","en": "low-calories", "ar": "low-calories"},
     # Non-branded SEO landing pages (added 15 Sep 2026) — for searchers who don't
     # know the MZ FOOD name yet and search by cuisine/dish instead. Not in main nav,
     # but included in sitemap/hreflang and cross-linked from Menu.
@@ -60,7 +59,6 @@ NAV = {
     "delivery": {"ru": "Доставка", "en": "Delivery", "ar": "التوصيل"},
     "reviews":  {"ru": "Отзывы",   "en": "Reviews",  "ar": "التقييمات"},
     "contacts": {"ru": "Контакты", "en": "Contacts", "ar": "تواصل"},
-    "lowcalories": {"ru": "Low Calories", "en": "Low Calories", "ar": "Low Calories"},
     # Breadcrumb labels only — these two are not in PAGE_ORDER, so they don't appear in the main nav.
     "uzbek_cuisine": {"ru": "Узбекская кухня", "en": "Uzbek Cuisine", "ar": "المطبخ الأوزبكي"},
     "plov": {"ru": "Плов", "en": "Plov", "ar": "البلوف"},
@@ -79,7 +77,6 @@ CTA = {
     "open_maps":       {"ru": "Открыть в Google Картах", "en": "Open in Google Maps", "ar": "فتح في خرائط جوجل"},
     "leave_review":    {"ru": "Оставить отзыв в Google", "en": "Leave a review on Google", "ar": "أضف تقييمك على جوجل"},
     "share_whatsapp":  {"ru": "Поделиться мнением в WhatsApp", "en": "Share feedback on WhatsApp", "ar": "شاركنا رأيك عبر واتساب"},
-    "view_lowcal":     {"ru": "Посмотреть Low Calories", "en": "View Low Calories", "ar": "تعرف على Low Calories"},
     "discuss_partner":{"ru": "Обсудить сотрудничество", "en": "Discuss partnership", "ar": "تواصل للشراكة"},
 }
 
@@ -108,11 +105,6 @@ WA_TEXT = {
         "ru": "Меню",
         "en": "Menu",
         "ar": "المنيو",
-    },
-    "lowcal": {
-        "ru": "Здравствуйте! Хочу узнать про линейку Low Calories в MZ FOOD.",
-        "en": "Hello! I'd like to know more about the Low Calories line at MZ FOOD.",
-        "ar": "مرحبًا! أرغب أعرف أكتر عن خط Low Calories في MZ FOOD.",
     },
 }
 
@@ -152,15 +144,15 @@ MENU_CATEGORIES = [
         "name": {"ru": "Горячие блюда", "en": "Hot Dishes", "ar": "أطباق ساخنة"},
         "items": [
             {"key": "borsch", "name": {"ru": "Борщ", "en": "Borscht", "ar": "بورش"},
-             "weight": {"ru": "500 мл", "en": "500 ml", "ar": "500 مل"}, "price": 30},
+             "weight": {"ru": "500 мл", "en": "500 ml", "ar": "500 مل"}, "price": 30, "image": "borsch.jpg"},
             {"key": "lagman", "name": {"ru": "Лагман", "en": "Lagman", "ar": "لغمان"},
-             "weight": {"ru": "500 мл", "en": "500 ml", "ar": "500 مل"}, "price": 35},
+             "weight": {"ru": "500 мл", "en": "500 ml", "ar": "500 مل"}, "price": 35, "image": "lagman.jpg"},
             {"key": "kotlety", "name": {"ru": "Котлеты с пюре", "en": "Meat Cutlets with Mashed Potato", "ar": "كفتة مع بيوريه بطاطس"},
-             "weight": {"ru": "2 котлеты по 100 г + пюре 250 г", "en": "2 cutlets 100 g + mash 250 g", "ar": "قطعتان 100 جم + بيوريه 250 جم"}, "price": 35},
+             "weight": {"ru": "2 котлеты по 100 г + пюре 250 г", "en": "2 cutlets 100 g + mash 250 g", "ar": "قطعتان 100 جم + بيوريه 250 جم"}, "price": 35, "image": "kotlety.jpg"},
             {"key": "plov_govyadina", "name": {"ru": "Плов с говядиной", "en": "Beef Plov", "ar": "بلوف باللحم البقري"},
-             "weight": {"ru": "450 г", "en": "450 g", "ar": "450 جم"}, "price": 35},
+             "weight": {"ru": "450 г", "en": "450 g", "ar": "450 جم"}, "price": 35, "image": "plov_govyadina.jpg"},
             {"key": "plov_sweet", "name": {"ru": "Сладкий плов с сухофруктами", "en": "Sweet Plov with Dried Fruit", "ar": "بلوف حلو بالفواكه المجففة"},
-             "weight": {"ru": "400 г", "en": "400 g", "ar": "400 جم"}, "price": 30},
+             "weight": {"ru": "400 г", "en": "400 g", "ar": "400 جم"}, "price": 30, "image": "plov_sweet.jpg"},
         ],
     },
     {
@@ -168,17 +160,17 @@ MENU_CATEGORIES = [
         "name": {"ru": "Лепёшки и блины", "en": "Flatbreads & Pancakes", "ar": "أرغفة وفطائر"},
         "items": [
             {"key": "khychiny_syr", "name": {"ru": "Хычины с сыром", "en": "Khychiny with Cheese", "ar": "خيتشيني بالجبن"},
-             "weight": {"ru": "", "en": "", "ar": ""}, "price": 25},
+             "weight": {"ru": "", "en": "", "ar": ""}, "price": 25, "image": "khychiny_syr.jpg"},
             {"key": "khingalsh", "name": {"ru": "Хингалш", "en": "Khingalsh", "ar": "خينغالش"},
-             "weight": {"ru": "", "en": "", "ar": ""}, "price": 25,
+             "weight": {"ru": "", "en": "", "ar": ""}, "price": 25, "image": "khingalsh.jpg",
              "note_ru": "На сайте раньше было указано «Хинкали» — уточнить у владельца точное название блюда."},
             {"key": "bliny_myaso", "name": {"ru": "Блины с мясом", "en": "Pancakes with Meat", "ar": "فطائر باللحم"},
-             "weight": {"ru": "3 шт", "en": "3 pcs", "ar": "3 قطع"}, "price": 35,
+             "weight": {"ru": "3 шт", "en": "3 pcs", "ar": "3 قطع"}, "price": 35, "image": "bliny_myaso.jpg",
              "note_ru": "На сайте раньше было указано «5 шт» — в Google Business указано «3 шт»; уточнить с владельцем."},
             {"key": "bliny_dzhem", "name": {"ru": "Блины с джемом", "en": "Pancakes with Jam", "ar": "فطائر بالمربى"},
-             "weight": {"ru": "5 шт", "en": "5 pcs", "ar": "5 قطع"}, "price": 25},
+             "weight": {"ru": "5 шт", "en": "5 pcs", "ar": "5 قطع"}, "price": 25, "image": "bliny_dzhem.jpg"},
             {"key": "bliny_smetana", "name": {"ru": "Блины со сметаной", "en": "Pancakes with Sour Cream", "ar": "فطائر بالقشدة الحامضة"},
-             "weight": {"ru": "5 шт", "en": "5 pcs", "ar": "5 قطع"}, "price": 25},
+             "weight": {"ru": "5 шт", "en": "5 pcs", "ar": "5 قطع"}, "price": 25, "image": "bliny_smetana.jpg"},
         ],
     },
     {
@@ -186,7 +178,7 @@ MENU_CATEGORIES = [
         "name": {"ru": "Салаты", "en": "Salads", "ar": "سلطات"},
         "items": [
             {"key": "vinegret", "name": {"ru": "Винегрет", "en": "Vinaigrette Salad", "ar": "سلطة فينيغريت"},
-             "weight": {"ru": "350 г", "en": "350 g", "ar": "350 جم"}, "price": 25},
+             "weight": {"ru": "350 г", "en": "350 g", "ar": "350 جم"}, "price": 25, "image": "vinegret.jpg"},
         ],
     },
     {
@@ -194,7 +186,7 @@ MENU_CATEGORIES = [
         "name": {"ru": "Напитки", "en": "Drinks", "ar": "مشروبات"},
         "items": [
             {"key": "kompot", "name": {"ru": "Компот из сухофруктов", "en": "Dried Fruit Compote", "ar": "كمبوت الفواكه المجففة"},
-             "weight": {"ru": "1 л", "en": "1 L", "ar": "1 لتر"}, "price": 18},
+             "weight": {"ru": "1 л", "en": "1 L", "ar": "1 لتر"}, "price": 18, "image": "kompot.jpg"},
         ],
     },
 ]
@@ -252,21 +244,6 @@ HOW_TO_ORDER = [
     {"n": 3, "title": {"ru": "Получите доставку", "en": "Get your delivery", "ar": "استلم طلبك"},
      "text": {"ru": "По Мекке и в отели, включая период Умры и Хаджа.", "en": "Across Makkah and to hotels, including during Umrah and Hajj.", "ar": "في مكة وللفنادق، حتى في مواسم العمرة والحج."}},
 ]
-
-LOW_CALORIES = {
-    "title": {"ru": "Low Calories", "en": "Low Calories", "ar": "Low Calories"},
-    "subtitle": {
-        "ru": "Более лёгкая линейка блюд от MZ FOOD — для гостей, которые следят за питанием.",
-        "en": "A lighter line of dishes from MZ FOOD — for guests who watch what they eat.",
-        "ar": "خط أطباق أخف من MZ FOOD — للضيوف اللي بيهتموا بنوعية أكلهم.",
-    },
-    # No real Low Calories menu/pricing data exists yet — deliberately not invented.
-    "pending_note": {
-        "ru": "Меню Low Calories скоро появится здесь. Актуальные варианты уточняйте в WhatsApp.",
-        "en": "The Low Calories menu is coming soon. Ask about current options on WhatsApp.",
-        "ar": "منيو Low Calories هيتضاف قريبًا هنا. اسأل عن الخيارات المتاحة حاليًا عبر واتساب.",
-    },
-}
 
 REVIEWS_EMPTY = {
     "title": {"ru": "Отзывы наших гостей", "en": "What our guests say", "ar": "آراء ضيوفنا"},
@@ -508,12 +485,6 @@ META = {
         "desc": {"ru": "Свяжитесь с MZ FOOD в Мекке: WhatsApp, телефон, адрес и Instagram.",
                   "en": "Contact MZ FOOD in Makkah: WhatsApp, phone, address and Instagram.",
                   "ar": "تواصل مع MZ FOOD في مكة: واتساب، هاتف، العنوان وإنستجرام."},
-    },
-    "lowcalories": {
-        "title": {"ru": "Low Calories — лёгкие блюда от MZ FOOD в Мекке", "en": "Low Calories — Lighter Dishes by MZ FOOD in Makkah", "ar": "Low Calories — أطباق أخف من MZ FOOD في مكة"},
-        "desc": {"ru": "Low Calories — линейка более лёгких блюд от MZ FOOD для гостей, которые следят за питанием.",
-                  "en": "Low Calories — a lighter line of dishes by MZ FOOD for health-conscious guests.",
-                  "ar": "Low Calories — خط أطباق أخف من MZ FOOD للضيوف المهتمين بنوعية أكلهم."},
     },
     "uzbek_cuisine": {
         "title": {"ru": "Узбекская кухня в Мекке — плов, лагман | MZ FOOD",
