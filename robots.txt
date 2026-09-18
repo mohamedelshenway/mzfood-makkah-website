@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mohamedelshenway.github.io/mzfood-makkah-website/sitemap.xml
+Sitemap: https://mzfoodmakkah.com/sitemap.xml
