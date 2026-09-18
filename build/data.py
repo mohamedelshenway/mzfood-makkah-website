@@ -5,8 +5,8 @@ Only real, verified facts. Anything not confirmed is marked NEEDS_CONFIRMATION a
 rendered as an honest "ask on WhatsApp" placeholder instead of invented data.
 """
 
-BASE_URL = "https://mohamedelshenway.github.io/mzfood-makkah-website"
-BASE_PATH = "/mzfood-makkah-website"  # GitHub Pages project-site prefix
+BASE_URL = "https://mzfoodmakkah.com"
+BASE_PATH = ""  # served from custom domain root (mzfoodmakkah.com), no path prefix
 
 LANGS = ["ru", "en", "ar"]
 DEFAULT_LANG = "ru"
@@ -108,13 +108,43 @@ WA_TEXT = {
     },
 }
 
-def wa_link(text_key):
+# ---------------------------------------------------------------------------
+# Order-source attribution — appended to WhatsApp pre-filled messages so the
+# MZ FOOD team can tell, at a glance inside WhatsApp, that an inquiry came
+# from the website (and exactly which page) rather than from Google Business
+# Profile, Instagram, or a walk-in. Keep this short and in the visitor's own
+# language so it doesn't look out of place in the message they send.
+SOURCE_TAG = {
+    "ru": "\n\n[Сайт mzfoodmakkah.com — страница «{source}»]",
+    "en": "\n\n[Website mzfoodmakkah.com — \"{source}\" page]",
+    "ar": "\n\n[موقع mzfoodmakkah.com — صفحة «{source}»]",
+}
+# Non-page sources (e.g. the Google Business Profile message link) that don't
+# have a NAV entry — add more here if another channel gets its own tagged link.
+GBP_SOURCE_LABEL = {"ru": "Google Business Profile", "en": "Google Business Profile", "ar": "Google Business Profile"}
+
+def _tag_message(msg, lang, page_key=None, source_label=None):
+    label = source_label[lang] if source_label else (NAV[page_key][lang] if page_key else None)
+    if not label:
+        return msg
+    return msg + SOURCE_TAG[lang].format(source=label)
+
+def wa_link(text_key, page_key=None, source_label=None):
+    """Build the wa.me link for every language. Pass page_key (a NAV key, e.g.
+    "menu", "home", "hotel_delivery") so the team can see which page an order
+    or inquiry came from, or source_label (an {lang: text} dict) for a
+    non-page source such as Google Business Profile."""
     from urllib.parse import quote
     text = WA_TEXT[text_key]
-    return {lang: f"https://wa.me/{CONTACT['whatsapp_number']}?text={quote(text[lang])}" for lang in LANGS}
+    out = {}
+    for lang in LANGS:
+        msg = _tag_message(text[lang], lang, page_key, source_label)
+        out[lang] = f"https://wa.me/{CONTACT['whatsapp_number']}?text={quote(msg)}"
+    return out
 
-def wa_link_dish(dish_name_by_lang, weight_by_lang, price_sar):
-    """Pre-filled WhatsApp message for a specific dish order button."""
+def wa_link_dish(dish_name_by_lang, weight_by_lang, price_sar, page_key=None, source_label=None):
+    """Pre-filled WhatsApp message for a specific dish order button, tagged
+    with the page it was ordered from (see wa_link)."""
     from urllib.parse import quote
     templates = {
         "ru": "Здравствуйте! Хочу заказать: {name}{weight} — {price} SAR.",
@@ -125,6 +155,7 @@ def wa_link_dish(dish_name_by_lang, weight_by_lang, price_sar):
     for lang in LANGS:
         w = f" ({weight_by_lang[lang]})" if weight_by_lang.get(lang) else ""
         msg = templates[lang].format(name=dish_name_by_lang[lang], weight=w, price=price_sar)
+        msg = _tag_message(msg, lang, page_key, source_label)
         out[lang] = f"https://wa.me/{CONTACT['whatsapp_number']}?text={quote(msg)}"
     return out
 

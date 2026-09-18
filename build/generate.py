@@ -26,11 +26,9 @@ from icons import icon  # noqa: E402
 
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
-WA_GENERAL = wa_link("general")
-WA_ORDER = wa_link("order")
-WA_PARTNER = wa_link("partner")
-WA_REVIEW = wa_link("review")
-WA_MENU_WORD = wa_link("menu_word")
+# NOTE: WhatsApp links are built per-page (not as global constants) so every
+# button carries a source tag identifying exactly which page the order or
+# inquiry came from — see wa_link()/wa_link_dish() in data.py.
 
 
 def bdi(text):
@@ -218,7 +216,7 @@ def header_html(lang, page_key):
     </nav>
     <div class="header-actions">
       <div class="lang-switch" role="group" aria-label="Language">{lang_switch}</div>
-      <a class="btn btn-whatsapp header-order-btn" href="{WA_ORDER[lang]}">{icon('whatsapp', 18)}{CTA['order_whatsapp'][lang]}</a>
+      <a class="btn btn-whatsapp header-order-btn" href="{wa_link('order', page_key)[lang]}">{icon('whatsapp', 18)}{CTA['order_whatsapp'][lang]}</a>
       <button class="nav-toggle" aria-label="Menu" aria-expanded="false">{icon('menu', 26)}</button>
     </div>
   </div>
@@ -259,10 +257,10 @@ def footer_html(lang):
 </footer>"""
 
 
-def mobile_cta_html(lang):
+def mobile_cta_html(lang, page_key):
     return f"""<div class="mobile-cta">
   <a class="btn btn-outline" href="{page_path('menu', lang)}">{CTA['view_menu'][lang]}</a>
-  <a class="btn btn-whatsapp" href="{WA_ORDER[lang]}">{icon('whatsapp', 18)}{CTA['order_whatsapp'][lang]}</a>
+  <a class="btn btn-whatsapp" href="{wa_link('order', page_key)[lang]}">{icon('whatsapp', 18)}{CTA['order_whatsapp'][lang]}</a>
 </div>"""
 
 
@@ -279,7 +277,7 @@ def layout(lang, page_key, title, description, body, extra_schema=None):
 {body}
 </main>
 {footer_html(lang)}
-{mobile_cta_html(lang)}
+{mobile_cta_html(lang, page_key)}
 <script src="{asset('js/main.js')}" defer></script>
 </body>
 </html>"""
@@ -296,8 +294,8 @@ def all_items_by_key():
     return d
 
 
-def dish_card_html(lang, item, show_note=False):
-    wa = wa_link_dish(item["name"], item["weight"], item["price"])[lang]
+def dish_card_html(lang, item, show_note=False, page_key=None):
+    wa = wa_link_dish(item["name"], item["weight"], item["price"], page_key)[lang]
     weight = item["weight"][lang]
     note = f' <span class="dish-note" style="color:#b34a2e;font-size:.75rem;">*</span>' if show_note and item.get("note_ru") else ""
     if item.get("image"):
@@ -321,7 +319,7 @@ def dish_card_html(lang, item, show_note=False):
 
 def home_body(lang):
     items = all_items_by_key()
-    popular = "".join(dish_card_html(lang, items[k]) for k in POPULAR_DISH_KEYS)
+    popular = "".join(dish_card_html(lang, items[k], page_key="home") for k in POPULAR_DISH_KEYS)
     why_cards = "".join(f"""<div class="feature-card">
   <div class="feature-icon">{icon(w['icon'], 24)}</div>
   <h3>{w['title'][lang]}</h3>
@@ -345,7 +343,7 @@ def home_body(lang):
       <h1>{HERO['h1'][lang]}</h1>
       <p class="lede">{HERO['sub'][lang]}</p>
       <div class="hero-actions">
-        <a class="btn btn-whatsapp" href="{WA_ORDER[lang]}">{icon('whatsapp',20)}{CTA['order_whatsapp'][lang]}</a>
+        <a class="btn btn-whatsapp" href="{wa_link('order', 'home')[lang]}">{icon('whatsapp',20)}{CTA['order_whatsapp'][lang]}</a>
         <a class="btn btn-outline" href="{page_path('menu', lang)}">{CTA['view_menu'][lang]}</a>
       </div>
       <div class="hero-badges">
@@ -441,7 +439,7 @@ def home_body(lang):
     <div class="feature-card" style="max-width:760px;margin-inline:auto;text-align:center;">
       <h3>{HOTELS_TEASER['title'][lang]}</h3>
       <p>{HOTELS_TEASER['text'][lang]}</p>
-      <a class="btn btn-outline" href="{WA_PARTNER[lang]}">{CTA['discuss_partner'][lang]} →</a>
+      <a class="btn btn-outline" href="{wa_link('partner', 'home')[lang]}">{CTA['discuss_partner'][lang]} →</a>
     </div>
   </div>
 </section>
@@ -450,7 +448,7 @@ def home_body(lang):
   <div class="container container--narrow">
     <h2>{FINAL_CTA['title'][lang]}</h2>
     <p>{FINAL_CTA['text'][lang]}</p>
-    <a class="btn btn-whatsapp" href="{WA_ORDER[lang]}">{icon('whatsapp',22)}{CTA['order_whatsapp'][lang]}</a>
+    <a class="btn btn-whatsapp" href="{wa_link('order', 'home')[lang]}">{icon('whatsapp',22)}{CTA['order_whatsapp'][lang]}</a>
     <p class="final-cta-phone">{ {"ru":"Или позвоните","en":"Or call","ar":"أو اتصل"}[lang] }: <a href="tel:{CONTACT['phone_tel']}">{PHONE_BDI}</a></p>
   </div>
 </section>
@@ -502,7 +500,7 @@ def menu_body(lang):
     <div class="menu-item-name">{KUNAFA[lang]}</div>
     <div class="menu-item-weight">{ {"ru":"Уточняйте цену в WhatsApp","en":"Ask for the price on WhatsApp","ar":"استفسر عن السعر عبر واتساب"}[lang] }</div>
   </div>
-  <a class="btn btn-whatsapp" href="{WA_GENERAL[lang]}">{icon('whatsapp',16)}{CTA['order_whatsapp'][lang]}</a>
+  <a class="btn btn-whatsapp" href="{wa_link('general', 'menu')[lang]}">{icon('whatsapp',16)}{CTA['order_whatsapp'][lang]}</a>
 </div>"""
 
     read_also = {
@@ -523,7 +521,7 @@ def menu_body(lang):
     {cats_html}
     {off_menu}
     <div class="section-cta-row" style="flex-direction:column;gap:16px;align-items:center;">
-      <a class="btn btn-whatsapp btn-block" href="{WA_ORDER[lang]}" style="max-width:360px;">{icon('whatsapp',20)}{CTA['order_whatsapp'][lang]}</a>
+      <a class="btn btn-whatsapp btn-block" href="{wa_link('order', 'menu')[lang]}" style="max-width:360px;">{icon('whatsapp',20)}{CTA['order_whatsapp'][lang]}</a>
       <a href="{page_path('hotel_delivery', lang)}" style="font-weight:700;text-decoration:underline;">{ {"ru":"Готовите для группы или отеля? Смотрите условия доставки","en":"Ordering for a group or hotel? See delivery details","ar":"بتطلب لمجموعة أو فندق؟ شوف تفاصيل التوصيل"}[lang] } →</a>
     </div>
     <div class="menu-note" style="margin-top:24px;text-align:center;">
@@ -563,7 +561,7 @@ def about_body(lang):
   <div class="container container--narrow">
     <h2>{ {"ru":"Остались вопросы?","en":"Still have questions?","ar":"عندك سؤال؟"}[lang] }</h2>
     <p>{ {"ru":"Напишите нам в WhatsApp — ответим быстро.","en":"Message us on WhatsApp — we reply quickly.","ar":"ابعتلنا واتساب — هنرد بسرعة."}[lang] }</p>
-    <a class="btn btn-whatsapp" href="{WA_GENERAL[lang]}">{icon('whatsapp',20)}{CTA['order_whatsapp'][lang]}</a>
+    <a class="btn btn-whatsapp" href="{wa_link('general', 'about')[lang]}">{icon('whatsapp',20)}{CTA['order_whatsapp'][lang]}</a>
   </div>
 </section>
 """
@@ -594,7 +592,7 @@ def delivery_body(lang):
     </div>
     <div class="steps">{steps}</div>
     <div class="section-cta-row">
-      <a class="btn btn-whatsapp" href="{WA_ORDER[lang]}">{icon('whatsapp',20)}{CTA['order_whatsapp'][lang]}</a>
+      <a class="btn btn-whatsapp" href="{wa_link('order', 'delivery')[lang]}">{icon('whatsapp',20)}{CTA['order_whatsapp'][lang]}</a>
     </div>
   </div>
 </section>
@@ -617,7 +615,7 @@ def reviews_body(lang):
       <p>{REVIEWS_EMPTY['text'][lang]}</p>
       <div class="empty-state-actions">
         <a class="btn btn-whatsapp" href="{CONTACT['maps_url']}">{icon('star',18)}{CTA['leave_review'][lang]}</a>
-        <a class="btn btn-outline" href="{WA_REVIEW[lang]}">{CTA['share_whatsapp'][lang]}</a>
+        <a class="btn btn-outline" href="{wa_link('review', 'reviews')[lang]}">{CTA['share_whatsapp'][lang]}</a>
       </div>
     </div>
   </div>
@@ -628,7 +626,7 @@ def reviews_body(lang):
 def contacts_body(lang):
     cards = f"""<div class="contact-card">
   <h3>WhatsApp</h3>
-  <a class="value" href="{WA_GENERAL[lang]}">{PHONE_BDI}</a>
+  <a class="value" href="{wa_link('general', 'contacts')[lang]}">{PHONE_BDI}</a>
 </div>
 <div class="contact-card">
   <h3>{ {"ru":"Телефон","en":"Phone","ar":"الهاتف"}[lang] }</h3>
@@ -669,7 +667,7 @@ def cuisine_landing_body(lang, page_key, data):
     Cross-links to sibling cuisine pages come from data['related'] (a list of
     page_keys), so this scales to any number of landing pages, not just a pair."""
     items = all_items_by_key()
-    dish_cards = "".join(dish_card_html(lang, items[k]) for k in data["dish_keys"])
+    dish_cards = "".join(dish_card_html(lang, items[k], page_key=page_key) for k in data["dish_keys"])
     note_html = f'<p class="menu-note">{data["note"][lang]}</p>' if data.get("note") else ""
     related_keys = data.get("related", [])
     read_also_label = {"ru": "Читайте также", "en": "You might also like", "ar": "اقرأ أيضًا"}[lang]
@@ -702,7 +700,7 @@ def cuisine_landing_body(lang, page_key, data):
   <div class="container container--narrow">
     <h2>{data['closing_title'][lang]}</h2>
     <p>{data['closing_text'][lang]}</p>
-    <a class="btn btn-whatsapp" href="{WA_ORDER[lang]}">{icon('whatsapp',22)}{CTA['order_whatsapp'][lang]}</a>
+    <a class="btn btn-whatsapp" href="{wa_link('order', page_key)[lang]}">{icon('whatsapp',22)}{CTA['order_whatsapp'][lang]}</a>
   </div>
 </section>
 """
@@ -735,7 +733,7 @@ def hotel_delivery_body(lang):
     inventing new claims, with its own unique intro/CTA copy so it isn't a
     duplicate of the general /delivery page."""
     items = all_items_by_key()
-    dish_cards = "".join(dish_card_html(lang, items[k]) for k in HOTEL_DELIVERY_PAGE["dish_keys"])
+    dish_cards = "".join(dish_card_html(lang, items[k], page_key="hotel_delivery") for k in HOTEL_DELIVERY_PAGE["dish_keys"])
     areas = "".join(f"""<div class="feature-card">
   <div class="feature-icon">{icon('truck',22)}</div>
   <h3>{a['title'][lang]}</h3>
@@ -795,7 +793,7 @@ def hotel_delivery_body(lang):
     <h2>{HOTELS_TEASER['title'][lang]}</h2>
     <p>{HOTELS_TEASER['text'][lang]}</p>
     <div class="hero-actions" style="justify-content:center;">
-      <a class="btn btn-whatsapp" href="{WA_PARTNER[lang]}">{icon('whatsapp',20)}{CTA['discuss_partner'][lang]}</a>
+      <a class="btn btn-whatsapp" href="{wa_link('partner', 'hotel_delivery')[lang]}">{icon('whatsapp',20)}{CTA['discuss_partner'][lang]}</a>
     </div>
     {related_html}
   </div>
@@ -804,7 +802,7 @@ def hotel_delivery_body(lang):
   <div class="container container--narrow">
     <h2>{HOTEL_DELIVERY_PAGE['closing_title'][lang]}</h2>
     <p>{HOTEL_DELIVERY_PAGE['closing_text'][lang]}</p>
-    <a class="btn btn-whatsapp" href="{WA_ORDER[lang]}">{icon('whatsapp',22)}{CTA['order_whatsapp'][lang]}</a>
+    <a class="btn btn-whatsapp" href="{wa_link('order', 'hotel_delivery')[lang]}">{icon('whatsapp',22)}{CTA['order_whatsapp'][lang]}</a>
   </div>
 </section>
 """
