@@ -120,7 +120,7 @@ def restaurant_schema(lang):
         "image": f"{BASE_URL}/logo.jpg",
         "url": page_url("home", lang),
         "telephone": CONTACT["phone_tel"],
-        "servesCuisine": ["Russian", "Chechen", "Caucasian"],
+        "servesCuisine": ["Russian", "Chechen", "Caucasian", "Uzbek", "Central Asian"],
         "priceRange": "SAR 18-35",
         "address": {
             "@type": "PostalAddress",

@@ -229,16 +229,20 @@ KUNAFA = {"ru": "Кунафа", "en": "Kunafa", "ar": "كنافة"}
 POPULAR_DISH_KEYS = ["borsch", "plov_govyadina", "lagman", "khychiny_syr", "khingalsh", "bliny_myaso"]
 
 HERO = {
-    "eyebrow": TAGLINE,
+    "eyebrow": {
+        "ru": "Ресторан домашней кухни в Мекке",
+        "en": "A home-style restaurant in Makkah",
+        "ar": "مطعم بيتي في مكة",
+    },
     "h1": {
         "ru": "Вкус дома в сердце Мекки",
         "en": "The taste of home in the heart of Makkah",
         "ar": "طعم البيت في قلب مكة",
     },
     "sub": {
-        "ru": "Домашняя халяльная еда в Мекке для русскоязычных гостей, паломников и путешественников из России, Чечни, Кавказа и стран СНГ.",
-        "en": "Home-style halal food in Makkah for Russian-speaking guests, pilgrims and travelers from Russia, Chechnya, the Caucasus and the CIS.",
-        "ar": "أكل بيتي حلال في مكة المكرمة لضيوف روسيا والشيشان والقوقاز ودول رابطة الدول المستقلة، وحجاج ومعتمرين ناطقين بالروسية.",
+        "ru": "Ресторан и доставка домашней халяльной еды в Мекке — русская, чеченская, кавказская и узбекская кухня для русскоязычных гостей, паломников и путешественников из России, Чечни, Кавказа и стран СНГ.",
+        "en": "A restaurant and delivery for home-style halal food in Makkah — Russian, Chechen, Caucasian and Uzbek cuisine for Russian-speaking guests, pilgrims and travelers from Russia, Chechnya, the Caucasus and the CIS.",
+        "ar": "مطعم وتوصيل أكل بيتي حلال في مكة المكرمة — مطبخ روسي وشيشاني وقوقازي وأوزبكي لضيوف روسيا والشيشان والقوقاز ودول رابطة الدول المستقلة، وحجاج ومعتمرين ناطقين بالروسية.",
     },
     "badges": {
         "makkah": {"ru": "Мекка", "en": "Makkah", "ar": "مكة"},
@@ -477,14 +481,14 @@ HOTEL_DELIVERY_PAGE = {
 META = {
     "home": {
         "title": {
-            "ru": "MZ FOOD — русская, чеченская и кавказская еда в Мекке",
-            "en": "MZ FOOD — Russian, Chechen & Caucasian Food in Makkah",
-            "ar": "MZ FOOD — أكل روسي وشيشاني وقوقازي في مكة",
+            "ru": "MZ FOOD — ресторан: русская, чеченская, кавказская и узбекская еда в Мекке",
+            "en": "MZ FOOD — Restaurant: Russian, Chechen, Caucasian & Uzbek Food in Makkah",
+            "ar": "MZ FOOD — مطعم أكل روسي وشيشاني وقوقازي وأوزبكي في مكة",
         },
         "desc": {
-            "ru": "Домашняя халяльная еда в Мекке для русскоязычных гостей, паломников и путешественников из России, Чечни, Кавказа и СНГ. Заказ через WhatsApp.",
-            "en": "Home-style halal food in Makkah for Russian-speaking guests, pilgrims and travelers from Russia, Chechnya, the Caucasus and the CIS. Order on WhatsApp.",
-            "ar": "أكل بيتي حلال في مكة لضيوف روسيا والشيشان والقوقاز ودول رابطة الدول المستقلة، وحجاج ومعتمرين ناطقين بالروسية. الطلب عبر واتساب.",
+            "ru": "Ресторан и доставка домашней халяльной еды в Мекке для русскоязычных гостей, паломников и путешественников из России, Чечни, Кавказа, Узбекистана и СНГ. Заказ через WhatsApp.",
+            "en": "A restaurant and delivery for home-style halal food in Makkah for Russian-speaking guests, pilgrims and travelers from Russia, Chechnya, the Caucasus, Uzbekistan and the CIS. Order on WhatsApp.",
+            "ar": "مطعم وتوصيل أكل بيتي حلال في مكة لضيوف روسيا والشيشان والقوقاز وأوزبكستان ودول رابطة الدول المستقلة، وحجاج ومعتمرين ناطقين بالروسية. الطلب عبر واتساب.",
         },
     },
     "menu": {
@@ -521,9 +525,9 @@ META = {
         "title": {"ru": "Узбекская кухня в Мекке — плов, лагман | MZ FOOD",
                   "en": "Uzbek Food in Makkah — Plov & Lagman | MZ FOOD",
                   "ar": "أكل أوزبكي في مكة — بلوف ولغمان | MZ FOOD"},
-        "desc": {"ru": "Плов, лагман и другие блюда среднеазиатской кухни в Мекке. Домашний вкус для гостей из Узбекистана, Таджикистана и Киргизстана. Заказ через WhatsApp.",
-                  "en": "Plov, lagman and other Central Asian dishes in Makkah. A familiar home-style taste for guests from Uzbekistan, Tajikistan and Kyrgyzstan. Order on WhatsApp.",
-                  "ar": "بلوف ولغمان وأطباق تانية من مطبخ آسيا الوسطى في مكة. طعم بيتي مألوف لضيوف أوزبكستان وطاجيكستان وقيرغيزستان. الطلب عبر واتساب."},
+        "desc": {"ru": "MZ FOOD — узбекский ресторан домашней кухни в Мекке: плов, лагман и другие блюда среднеазиатской кухни. Домашний вкус для гостей из Узбекистана, Таджикистана и Киргизстана. Заказ через WhatsApp.",
+                  "en": "MZ FOOD — an Uzbek restaurant with home-style cooking in Makkah: plov, lagman and other Central Asian dishes. A familiar taste for guests from Uzbekistan, Tajikistan and Kyrgyzstan. Order on WhatsApp.",
+                  "ar": "MZ FOOD — مطعم أوزبكي بيتي في مكة: بلوف ولغمان وأطباق تانية من مطبخ آسيا الوسطى. طعم بيتي مألوف لضيوف أوزبكستان وطاجيكستان وقيرغيزستان. الطلب عبر واتساب."},
     },
     "plov": {
         "title": {"ru": "Плов в Мекке — заказать с доставкой | MZ FOOD",
@@ -537,17 +541,17 @@ META = {
         "title": {"ru": "Русская кухня в Мекке — борщ, котлеты | MZ FOOD",
                   "en": "Russian Food in Makkah — Borscht & Cutlets | MZ FOOD",
                   "ar": "أكل روسي في مكة — بورش وكفتة | MZ FOOD"},
-        "desc": {"ru": "Борщ, котлеты с пюре, винегрет и другие блюда русской домашней кухни в Мекке. Заказ через WhatsApp, доставка по городу и в отели.",
-                  "en": "Borscht, cutlets with mash, vinaigrette salad and other Russian home-style dishes in Makkah. Order on WhatsApp, delivery across the city and to hotels.",
-                  "ar": "بورش وكفتة مع بيوريه وسلطة فينيغريت وأطباق روسية بيتية تانية في مكة. الطلب عبر واتساب، وتوصيل في المدينة والفنادق."},
+        "desc": {"ru": "MZ FOOD — русский ресторан домашней кухни в Мекке: борщ, котлеты с пюре, винегрет и другие блюда. Заказ через WhatsApp, доставка по городу и в отели.",
+                  "en": "MZ FOOD — a Russian restaurant with home-style cooking in Makkah: borscht, cutlets with mash, vinaigrette salad and more. Order on WhatsApp, delivery across the city and to hotels.",
+                  "ar": "MZ FOOD — مطعم روسي بيتي في مكة: بورش وكفتة مع بيوريه وسلطة فينيغريت وأطباق تانية. الطلب عبر واتساب، وتوصيل في المدينة والفنادق."},
     },
     "chechen_cuisine": {
         "title": {"ru": "Чеченская и кавказская кухня в Мекке — хычины, хингалш | MZ FOOD",
                   "en": "Chechen & Caucasian Food in Makkah — Khychiny, Khingalsh | MZ FOOD",
                   "ar": "أكل شيشاني وقوقازي في مكة — خيتشيني وخينغالش | MZ FOOD"},
-        "desc": {"ru": "Хычины с сыром, хингалш, лагман и другие блюда чеченской и кавказской кухни в Мекке. Заказ через WhatsApp.",
-                  "en": "Khychiny with cheese, khingalsh, lagman and other Chechen and Caucasian dishes in Makkah. Order on WhatsApp.",
-                  "ar": "خيتشيني بالجبن وخينغالش ولغمان وأطباق شيشانية وقوقازية تانية في مكة. الطلب عبر واتساب."},
+        "desc": {"ru": "MZ FOOD — чеченский и кавказский ресторан домашней кухни в Мекке: хычины с сыром, хингалш, лагман и другие блюда. Заказ через WhatsApp.",
+                  "en": "MZ FOOD — a Chechen and Caucasian restaurant with home-style cooking in Makkah: khychiny with cheese, khingalsh, lagman and more. Order on WhatsApp.",
+                  "ar": "MZ FOOD — مطعم شيشاني وقوقازي بيتي في مكة: خيتشيني بالجبن وخينغالش ولغمان وأطباق تانية. الطلب عبر واتساب."},
     },
     "lagman": {
         "title": {"ru": "Лагман в Мекке — заказать с доставкой | MZ FOOD",
